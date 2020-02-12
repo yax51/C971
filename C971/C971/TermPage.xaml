@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:C971.Model;assembly=C971"
+             mc:Ignorable="d"
+             x:Class="C971.TermPage">
+
+
+
+
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout VerticalOptions="Start">
+                <ListView x:Name="termTitle" ItemsSource="{Binding Terms}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label HorizontalOptions="CenterAndExpand">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding TermName} " FontSize="Large" FontAttributes="Bold"/>
+                                            <Span Text="{Binding TermStatus}" FontSize="Subtitle"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout VerticalOptions = "StartAndExpand">
+                <ListView x:Name="termButton" ItemsSource="{Binding Courses}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Button Text="{Binding CourseName}"
+                             IsEnabled="True"
+                             Clicked="Button_Clicked"
+                             IsVisible="True"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <CollectionView x:Name="pageListing" ItemsSource="{Binding Courses}" IsVisible="False" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                           
+                            <Label x:Name="courseName"
+                               Grid.Column="1"
+                               Grid.Row="2">
+
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Course Name: " FontSize="Medium"/>
+                                        <Span Text="{Binding CourseName }" FontSize="Medium" FontAttributes="Bold"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+
+                            <Label x:Name="courseStatus"
+                               Grid.Column="1"
+                               Grid.Row="3">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Course Status: " FontSize="Medium"/>
+                                        <Span Text="{Binding CourseStatus}" FontAttributes="Bold" FontSize="Medium"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <Label x:Name="courseStart"
+                               Grid.Column="1"
+                               Grid.Row="4">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Course Start: " FontSize="Medium"/>
+                                        <Span Text="{Binding CourseStart}" FontAttributes="Bold" FontSize="Medium"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+
+
+                            <Label x:Name="courseEnd"
+                               Grid.Column="1"
+                               Grid.Row="5">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Course End: " FontSize="Medium"/>
+                                        <Span Text="{Binding CourseEnd}" FontAttributes="Bold" FontSize="Medium"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <Label x:Name="instructorName"
+                               Grid.Column="1"
+                               Grid.Row="6">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Instructor Name: " FontSize="Medium"/>
+                                        <Span Text="{Binding InstructName}" FontAttributes="Bold" FontSize="Medium"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+
+                            <Label x:Name="instructorEmail"
+                               Grid.Column="1"
+                               Grid.Row="7">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Instructor Email: " FontSize="Medium"/>
+                                        <Span  Text="{Binding InstructEmail}" FontAttributes="Bold" FontSize="Medium"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+
+
+                            <Label x:Name="instructorPhone"
+                               Grid.Column="1"
+                               Grid.Row="8">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Instructor Phone: " FontSize="Medium"/>
+                                        <Span Text="{Binding InstructPhone}" FontAttributes="Bold" FontSize="Medium"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+
+
+                            <Label x:Name="notes"
+                               Grid.Column="1"
+                               Grid.Row="9">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Notes: " FontSize="Medium"/>
+                                        <Span Text="{Binding Notes}" FontAttributes="Bold" FontSize="Medium"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <Label x:Name="objectiveStart"
+                                    Grid.Column="1"
+                                    Grid.Row="10">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Objective Start: " FontSize="Medium"/>
+                                        <Span Text="{Binding CObjStart}" FontAttributes="Bold" FontSize="Medium"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+
+
+                            <Label x:Name="objectiveEnd"
+                                    Grid.Column="1"
+                                    Grid.Row="11">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Objective End: " FontSize="Medium"/>
+                                        <Span Text="{Binding CObjEnd}" FontAttributes="Bold" FontSize="Medium"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <Label x:Name="performanceStart"
+                                    Grid.Column="1"
+                                    Grid.Row="12">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Performance Start: " FontSize="Medium"/>
+                                        <Span Text="{Binding CPerStart}" FontAttributes="Bold" FontSize="Medium"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+
+
+                            <Label x:Name="performanceEnd"
+                                    Grid.Column="1"
+                                    Grid.Row="13">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Performance Start: " FontSize="Medium"/>
+                                        <Span Text="{Binding CPerEnd}" FontAttributes="Bold" FontSize="Medium"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+            
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
+                        
+                
+               

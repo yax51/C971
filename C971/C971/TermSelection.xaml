@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:C971.Model"
+             x:Class="C971.Page1"
+             Title="Term Selector">
+ 
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Picker x:Name="termPicker"
+                    ItemsSource="{Binding Terms}"
+                    ItemDisplayBinding="{Binding TermName}"
+                    Title="Select a term"
+                    IsEnabled="True"
+                    SelectedItem="{Binding pickerItem}"/>
+
+            
+            <Button x:Name="AddButton"
+                    Text="Add"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center" 
+                    IsEnabled="True"
+                    Clicked="AddClicked" />
+
+            <Button x:Name="RemoveButton"
+                    Text="Remove"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center" 
+                    IsEnabled="True"
+                    Clicked="RemoveClicked" IsVisible="True"/>
+            <Button x:Name="editButton"
+                    Text="Edit"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center"
+                    IsEnabled="True"
+                    Clicked="EditClicked"/>
+
+            <Button x:Name="InfoButton"
+                    Text="Info"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center" 
+                    IsEnabled="True"
+                    Clicked="InfoClicked" />
+
+            <Button x:Name="GoButton"
+                    Text="Go!"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center" 
+                    IsEnabled="True"
+                    Clicked="TermGoClicked" />
+                   
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:C971.Model"
+             x:Class="C971.AddTermPage">
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Term Name"/>
+            <Entry Placeholder="Term Name"
+                   x:Name="termName"/>
+
+            <Picker x:Name="statusPicker"
+                        Title="Select Status"
+                        IsEnabled="True"
+                        SelectedItem="statusItem"/>
+            
+            <Label Text="Projected Start Date: " />
+
+            <DatePicker x:Name="ProjectedStart"
+                        Format="D"/>
+
+            <Label Text="Projected End Date: "/>
+
+            <DatePicker x:Name="ProjectedEnd"
+                        Format="D"/>
+
+            <Label Text="Actual Start Date: "/>
+
+            <DatePicker x:Name="termStart"
+                        Format="D"/>
+
+            <Label Text="Actual End Dated: "/>
+
+            <DatePicker x:Name="termEnd"
+                        Format="D"/>
+
+
+            <Button x:Name="SaveTermButton"
+                    Text="Save"
+                    IsEnabled="True"
+                    Clicked="SaveTerm"/>
+
+            <Button x:Name="CancelTermButton"
+                    Text="Cancel"
+                    IsEnabled="True"
+                    Clicked="CancelTerm"/>
+
+            <Button x:Name="next"
+                    Text="Next"
+                    IsEnabled="True"
+                    IsVisible="False"
+                    Clicked="next_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

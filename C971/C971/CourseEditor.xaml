@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="C971.CourseEditor">
+    
+    <!--Place Holders set. Need to add x:Name to Entry boxes and save to SqlDB -->
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Course Editor"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   VerticalOptions="Start"
+                   HorizontalOptions="CenterAndExpand"/>
+                
+                <Label Text="Course Name: "
+                    FontSize="Small"/>
+                
+                <Entry x:Name="CourseName"
+                    Text="Enter Course Name"
+                   FontSize="Small"/>
+                
+                <Picker x:Name="statusPicker"
+                        Title="Select Status"
+                        IsEnabled="True"
+                        SelectedItem="statusItem"/>
+
+                <Label Text="Instructor:"
+                   FontSize="Small"/>
+                
+                <Entry x:Name="InstructorName" 
+                    Placeholder="Enter Insructor Name"
+                    FontSize="Small"/>
+                
+                <Label Text="Instructor Phone Numnber:"
+                   FontSize="Small"/>
+                
+                <Entry x:Name="InstructorPhone" 
+                   Placeholder="Enter Phone Number"
+                   FontSize="Small"/>
+                
+                <Label Text="Instructor Email:"
+                   FontSize="Small"/>
+                
+                <Entry x:Name="InstructorEmail" 
+                    Placeholder="Enter Email Address"
+                   FontSize="Small"/>
+                
+                <Label Text="Course Start Date:"
+                   FontSize="Small"/>
+                
+                <DatePicker x:Name="courseStart"
+                        Format="D"
+                        FontSize="Small"/>
+                
+                <Label Text="Course End Date:"
+                   FontSize="Small"/>
+                
+                <DatePicker x:Name="courseEnd"
+                        Format="D"
+                        FontSize="Small"/>
+                
+                <Label Text="Notes:"
+                       FontSize="Small"/>
+                
+                <Entry x:Name="notes"
+                       Placeholder="Enter Course notes: "
+                       FontSize="Small"/>
+
+                <Label Text="Objective Assessment Name:"
+                   FontSize="Small"/>
+                
+                <Entry x:Name="ObjectiveName"
+                    Placeholder="Enter Assessment Name:"
+                   FontSize="Small"/>
+                
+                <Label Text="Objective Assessment Start Date:"
+                   FontSize="Small"/>
+                
+                <DatePicker x:Name="ObjectiveStart"
+                        Format="D"
+                        FontSize="Small"/>
+                
+                <Label Text="Objective Assessment End Date:"
+                   FontSize="Small"/>
+                
+                <DatePicker x:Name="ObjectiveEnd"
+                        Format="D"
+                        FontSize="Small"/>
+                
+                <Label Text="Performance Assessment Name:"
+                   FontSize="Small"/>
+                
+                <Entry x:Name="PerformanceName"
+                    Placeholder="Enter Assessment Name:"
+                   FontSize="Small"/>
+                
+                <Label Text= "Performance Assessment Start Date:"
+                   FontSize="Small"/>
+                
+                <DatePicker x:Name="PerformanceStart"
+                        Format="D"
+                        FontSize="Small"/>
+                
+                <Label Text="Performance Assessment End Date:"
+                   FontSize="Small"/>
+                
+                <DatePicker x:Name="PerformanceEnd"
+                        Format="D"
+                        FontSize="Small"/>
+                
+                <Button x:Name="saveButton"
+                        Text="Save"
+                    IsEnabled="True"
+                    Clicked="SaveCourse"/>
+                
+                <Button x:Name="NextButton"
+                        Text="Next"
+                        IsEnabled="True"
+                        IsVisible="False"
+                        Clicked="NextButton_Clicked"/>
+                
+                <Button x:Name="doneButton"
+                        Text="Done"
+                        IsEnabled="True"
+                        IsVisible="False"
+                        Clicked="doneButton_Clicked"/>
+
+                <Button x:Name="CancelButton"
+                    Text="Cancel"
+                    IsEnabled="True"
+                    Clicked="CancelCourse"/>
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

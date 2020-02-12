@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:C971.Model"
+             mc:Ignorable="d"
+             x:Class="C971.TermEditor">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Term Name"/>
+            <Entry Placeholder="Term Name"
+                   x:Name="termName"/>
+
+            <Picker x:Name="statusPicker"
+                        Title="Select Status"
+                        IsEnabled="True"
+                        SelectedItem="statusItem"/>
+
+            <Label Text="Projected Start Date: " />
+            
+            <DatePicker x:Name="ProjectedStart"
+                        Format="D"/>
+            
+            <Label Text="Projected End Date: "/>
+
+            <DatePicker x:Name="ProjectedEnd"
+                        Format="D"/>
+            
+            <Label Text="Actual Start Date: "/>
+
+            <DatePicker x:Name="termStart"
+                        Format="D"/>
+
+            <Label Text="Actual End Dated: "/>
+
+            <DatePicker x:Name="termEnd"
+                        Format="D"/>
+
+
+            <Button x:Name="updateTermButton"
+                    Text="Update"
+                    IsEnabled="True"
+                    Clicked="updateTermButton_Clicked"/>
+
+            <Button x:Name="CancelTermButton"
+                    Text="Cancel"
+                    IsEnabled="True"
+                    Clicked="CancelTerm"/>
+        
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
