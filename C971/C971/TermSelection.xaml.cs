@@ -8,17 +8,18 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Data;
 using System.ComponentModel;
+using C971.Properties;
 
 namespace C971
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Page1 : ContentPage
     {
-
+        
         public Page1()
         {
             InitializeComponent();
-
+           
 
         }
         protected override void OnAppearing()
@@ -32,154 +33,159 @@ namespace C971
                 conn.CreateTable<Assessments>();
 
                 var terms = conn.Table<Terms>().ToList();
-                var courses = conn.Table<Courses>().ToList();
-                var assessments = conn.Table<Assessments>().ToList();
+                var courses = conn.Table<Courses>().ToList().FirstOrDefault();
+                var assessments = conn.Table<Assessments>().ToList().FirstOrDefault();
 
                 termPicker.ItemsSource = terms;
 
 
-                var dateNow = DateTime.Now;
                 if (!terms.Any())
                 {
                     conn.Insert(new Terms
                     {
                         TermName = "Demo Term",
                         TermStatus = "In Progress",
-                        TProjStart = dateNow,
-                        TProjEnd = dateNow,
-                        TActStart = dateNow,
-                        TActEnd = dateNow,
-                        
+                        TProjStart = new DateTime(2020, 1, 1),
+                        TProjEnd = new DateTime(2020, 5, 28),
+                        TActStart = new DateTime(2020, 1, 1),
+                        TActEnd = new DateTime(2020, 5, 15)
                     });
+                    if (courses.Id == 0)
+                    {
+                        conn.Insert(new Courses
+                        {
+                            CourseName = "Demo Course",
+                            CourseStatus = "Completed",
+                            CourseStart = new DateTime(2020, 1, 1),
+                            CourseEnd = new DateTime(2020, 1, 31),
+                            InstructName = "Patrick Davis",
+                            InstructEmail = "pdavi80@wgu.edu",
+                            InstructPhone = "509-608-7131",
+                            Notes = "Some notes regarding this course",
+
+                        });
+                    }
+                    if (assessments.Id == 0)
+                    {
+                        conn.Insert(new Assessments
+                        {
+                            AssessCourse = courses.CourseName,
+                            AssessType = "Objective",
+                            ObjAssessName = "Demo Objective",
+                            PerAssessName = "Performance",
+                            CObjStart = new DateTime(2020, 1, 29),
+                            CObjEnd = new DateTime(2020, 1, 29),
+                            CPerStart = new DateTime(2020, 1, 30),
+                            CPerEnd = new DateTime(2020, 1, 31),
+                        });
+                    }
+
                 }
-                if (!courses.Any())
+
+            }
+        }
+
+        //Displays actionsheet with the selected Term info
+        void InfoClicked(Object sender, EventArgs e)
+        {
+            var terms = (Terms)termPicker.SelectedItem;
+            string pattern = "MM/dd/yyyy";
+            if (terms == null)
+            {
+                DisplayAlert("Error", "Please Select a term", "Ok");
+            }
+            else
+            {
+                DisplayActionSheet(terms.TermName, "Ok", null, "Term Status: " + terms.TermStatus,
+                "Projected Start: " + terms.TProjStart.ToString(pattern),
+                "Projected End: " + terms.TProjEnd.ToString(pattern),
+                "Actual Start: " + terms.TActStart.ToString(pattern),
+                "Actual End : " + terms.TActEnd.ToString(pattern));
+
+
+            }
+
+
+
+        }
+
+
+
+
+        void AddClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AddTermPage());
+
+        }
+
+        //Popup to confirm deletion  
+        async void RemoveClicked(object sender, EventArgs e)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+            {
+                var selectedTerm = (Terms)termPicker.SelectedItem;
+                var courses = conn.Table<Courses>().FirstOrDefault();
+
+                courses.TermId = selectedTerm.Id;
+
+                bool answer = await DisplayAlert("Are you sure?", "Are you sure you want to remove this Term?", "Yes", "No");
+
+                if (answer == true)
                 {
 
-                    conn.Insert(new Courses
-                    {
-                        CourseName = "Demo Course",
-                        CourseStatus = "Completed",
-                        CourseStart = dateNow,
-                        CourseEnd = dateNow,
-                        InstructName = "Patrick Davis",
-                        InstructEmail = "pdavi80@wgu.edu",
-                        InstructPhone = "509-608-7131",
-                        Notes = "Some notes regarding this course",
-                        CObjStart = dateNow,
-                        CObjEnd = dateNow,
-                        CPerStart = dateNow,
-                        CPerEnd = dateNow,
+                    conn.Execute($"DELETE FROM Terms WHERE '{selectedTerm.Id}' = Id ");
 
-                    });
+                    conn.Execute($"DELETE FROM Courses WHERE '{selectedTerm.Id}' = '{courses.TermId}'");
+                    var refresh = new Page1();
+                    Navigation.InsertPageBefore(refresh, this);
+                    await Navigation.PopAsync();
+
                 }
-                if (!assessments.Any())
+                else
                 {
-                    conn.Insert(new Assessments
-                    {
-                        AssessCourse = "Demo Course",
-                        AssessType = "Objective",
-                        ObjAssessName = "Demo Objective",
-                        ObjAssessStart = dateNow,
-                        ObjAssessEnd = dateNow,
-                        PerAssessName = "Performance",
-                        PerAssessStart = dateNow,
-                        PerAssessEnd = dateNow
-                    });
+                    await Navigation.PopAsync();
                 }
-
             }
 
         }
 
-            //Displays actionsheet with the selected Term info
-            void InfoClicked(Object sender, EventArgs e)
-
+        void TermGoClicked(object sender, EventArgs e)
+        {
+            var selectedTerm = (Terms)termPicker.SelectedItem;
+            if (selectedTerm == null)
             {
-                using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+                DisplayAlert("Error", "Please Select a term", "Ok");
+            }
+            else
+            {
+
+
+                Navigation.PushAsync(new TermPage());
+            }
+
+
+
+        }
+
+
+
+        void EditClicked(object sender, EventArgs e)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+            {
+                var selectedTerm = (Terms)termPicker.SelectedItem;
+                if (selectedTerm == null)
                 {
-
-                var terms = conn.Table<Terms>().FirstOrDefault();
-
-              var pickerItem = termPicker.Items[termPicker.SelectedIndex];
-
-                
-
-                    
-
-                    DisplayActionSheet(pickerItem, "Ok", null, "Term Status: " + terms.TermStatus,
-                    "Projected Start: " + terms.TProjStart.ToString(),
-                    "Projected End: " + terms.TProjEnd.ToString(),
-                    "Actual Start: " + terms.TActStart.ToString(),
-                    "Actual End : " + terms.TActEnd.ToString());
-
-
+                    DisplayAlert("Error", "Please Select a term", "Ok");
                 }
-
-            }
-
-
-
-            //Navigates to the TermEditor page to input Term information
-            void AddClicked(object sender, EventArgs e)
-            {
-                Navigation.PushAsync(new AddTermPage());
-
-            }
-
-            //Popup to confirm deletion  
-            async void RemoveClicked(object sender, EventArgs e)
-            {
-                using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+                else
                 {
-                    Terms _terms = new Terms();
-                    bool answer = await DisplayAlert("Are you sure?", "Are you sure you want to remove this Term?", "Yes", "No");
-
-                    if (answer == true)
-                    {
-                        //Need to delete only selected item
-                        conn.Execute("DELETE FROM Terms");
-                        //back up to clear all data
-                        conn.Execute("DELETE FROM Courses");
-                        var refresh = new Page1();
-                        Navigation.InsertPageBefore(refresh, this);
-                        await Navigation.PopAsync();
-
-                    }
-                    else
-                    {
-                        await Navigation.PopAsync();
-                    }
+                    Navigation.PushAsync(new TermEditor());
                 }
-
             }
 
-            void TermGoClicked(object sender, EventArgs e)
-            {
 
-                using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
-                {
-
-                    var terms = conn.Table<Terms>().FirstOrDefault();
-                    var courses = conn.Table<Courses>().FirstOrDefault();
-
-                    //var pickerItem = termPicker.Items[termPicker.SelectedIndex];
-
-
-                    //courses.PickerItem = pickerItem;
-                    //terms.PickerItem = pickerItem;
-                    conn.Update(courses);
-                    conn.Update(terms);
-
-                    Navigation.PushAsync(new TermPage());
-                }
-
-            }
-
-            void EditClicked(object sender, EventArgs e)
-            {
-                Navigation.PushAsync(new TermEditor());
-            }
-          
+        }
     }
 }
 

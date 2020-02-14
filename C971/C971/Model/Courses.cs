@@ -17,12 +17,7 @@ namespace C971.Model
         public string InstructEmail { get; set; }
         public string InstructPhone { get; set; }
         public string Notes { get; set; }
-        public string CObjName { get; set; }
-        public DateTime CObjStart { get; set; }
-        public DateTime CObjEnd { get; set; }
-        public string CPerName { get; set; }
-        public DateTime CPerStart { get; set; }
-        public DateTime CPerEnd { get; set; }
+        public int TermId { get; set; }
         
     }
     

@@ -43,10 +43,10 @@
     <EmbeddedResource Update="CourseEditor.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="StartPage.xaml">
+    <EmbeddedResource Update="TermEditor.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="TermEditor.xaml">
+    <EmbeddedResource Update="TermPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="TermSelection.xaml">

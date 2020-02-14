@@ -15,7 +15,8 @@ namespace C971.Model
         public DateTime TProjStart { get; set; }
         public DateTime TProjEnd { get; set; } 
         public DateTime TActStart { get; set; } 
-        public DateTime TActEnd { get; set; } 
+        public DateTime TActEnd { get; set; }
+        public string Pick { get; set; }
         
        
 

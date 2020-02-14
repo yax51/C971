@@ -31,7 +31,7 @@ namespace C971
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
                 var courses = conn.Table<Courses>().FirstOrDefault();
-
+                var assessment = conn.Table<Assessments>().FirstOrDefault();
                            
                     conn.Insert(new Courses
                     {
@@ -43,13 +43,18 @@ namespace C971
                         InstructPhone = InstructorPhone.Text,
                         InstructEmail = InstructorEmail.Text,
                         Notes = notes.Text,
-                        CObjName = ObjectiveName.Text,
-                        CObjStart = ObjectiveStart.Date,
-                        CObjEnd = ObjectiveEnd.Date,
-                        CPerName = PerformanceName.Text,
-                        CPerStart = PerformanceStart.Date,
-                        CPerEnd = PerformanceEnd.Date
+                        
                     });
+
+                conn.Insert(new Assessments
+                {
+                    ObjAssessName = ObjectiveName.Text,
+                    CObjStart = ObjectiveStart.Date,
+                    CObjEnd = ObjectiveEnd.Date,
+                    PerAssessName = PerformanceName.Text,
+                    CPerStart = PerformanceStart.Date,
+                    CPerEnd = PerformanceEnd.Date
+                });
 
                     if (courses.Id > 0)
                     {
@@ -58,6 +63,15 @@ namespace C971
                         doneButton.IsVisible = true;
                         saveButton.IsVisible = false;
                         CancelButton.IsVisible = false;
+
+                    }
+                    if (assessment.Id > 0)
+                    {
+                    DisplayAlert("Success", "Courses Saved. Click NEXT to add another course. Click DONE to finish adding courses", "Ok");
+                    NextButton.IsVisible = true;
+                    doneButton.IsVisible = true;
+                    saveButton.IsVisible = false;
+                    CancelButton.IsVisible = false;
 
                     }
                     else

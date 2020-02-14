@@ -43,6 +43,10 @@
                     Text="Update"
                     IsEnabled="True"
                     Clicked="updateTermButton_Clicked"/>
+            <Button x:Name="addCoursesButton"
+                    Text="Add Courses"
+                    IsEnabled="True"
+                    Clicked="addCoursesButton_Clicked"/>
 
             <Button x:Name="CancelTermButton"
                     Text="Cancel"

@@ -11,10 +11,9 @@ namespace C971.Model
         public string PerAssessName { get; set; }
         public string AssessType { get; set; }
         public string AssessCourse { get; set; }
-        public DateTime ObjAssessStart { get; set; }
-        public DateTime ObjAssessEnd { get; set; }
-        public DateTime PerAssessStart { get; set; }
-        public DateTime PerAssessEnd { get; set; }
-
+        public DateTime CObjStart { get; set; }
+        public DateTime CObjEnd { get; set; }
+        public DateTime CPerStart { get; set; }
+        public DateTime CPerEnd { get; set; }
     }
 }

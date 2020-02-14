@@ -54,6 +54,12 @@
                     IsEnabled="True"
                     IsVisible="False"
                     Clicked="next_Clicked"/>
+            <Button x:Name="done"
+                    Text="Done"
+                    IsEnabled="True"
+                    IsVisible="False"
+                    Clicked="done_Clicked"/>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

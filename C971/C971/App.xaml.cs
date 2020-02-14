@@ -2,6 +2,7 @@
 using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using C971.Model;
 
 
 namespace C971
@@ -9,6 +10,7 @@ namespace C971
     public partial class App : Application
     {
         public static string DatabaseLocation = string.Empty;
+        
         
         public App()
         {

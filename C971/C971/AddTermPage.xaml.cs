@@ -46,10 +46,11 @@ namespace C971
                 if (terms.Id > 0)
                 {
 
-                    DisplayAlert("Success", "Term Added Successfully. Press NEXT to add Courses", "Ok");
+                    DisplayAlert("Success", "Term Added Successfully. Press NEXT to add Courses, or click DONE to be finished.", "Ok");
                     next.IsVisible = true;
                     SaveTermButton.IsVisible = false;
                     CancelTermButton.IsVisible = false;
+                    done.IsVisible = true;
 
 
                 }
@@ -70,6 +71,11 @@ namespace C971
         private void next_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new CourseEditor());
+        }
+
+        private void done_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync();
         }
     }
 }

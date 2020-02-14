@@ -79,5 +79,9 @@ namespace C971
             await Navigation.PushAsync(new Page1());
         }
 
+        private void addCoursesButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new CourseEditor());
+        }
     }
 }

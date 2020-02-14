@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:local="clr-namespace:C971.Model"
+             xmlns:local="clr-namespace:C971"
              x:Class="C971.Page1"
              Title="Term Selector">
  
@@ -12,12 +12,12 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <Picker x:Name="termPicker"
+            <Picker x:Name="termPicker" 
                     ItemsSource="{Binding Terms}"
                     ItemDisplayBinding="{Binding TermName}"
                     Title="Select a term"
                     IsEnabled="True"
-                    SelectedItem="{Binding pickerItem}"/>
+                    SelectedItem="{x:Static local:PickerPersist.PickerSelectedItem}"/>
 
             
             <Button x:Name="AddButton"
